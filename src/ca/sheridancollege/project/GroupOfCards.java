@@ -15,14 +15,29 @@ import java.util.Collections;
  * @author dancye
  * @author Paul Bonenfant Jan 2020
  */
-public class GroupOfCards {
+public class GroupOfCards{
 
     //The group of cards, stored in an ArrayList
-    private ArrayList<Card> cards;
+    ArrayList<Card> cards;
     private int size;//the size of the grouping
+    protected Card card;
 
+    enum Suit {CLUBS,DIAMONDS,HEARTS,SPADES};
+    enum Rank {ONE,TWO,THREE,FOUR,FIVE,SIX,SEVEN,EIGHT,NINE,JACK,QUEEN,KING};
+    Suit[] suits=Suit.values();
+    Rank[] ranks=Rank.values();
+    
     public GroupOfCards(int size) {
+        
         this.size = size;
+        this.cards =new ArrayList<>(); 
+        
+        for(int i=0;i<suits.length;i++){
+            for(int j=0; j<ranks.length;j++){
+                card = new GoFishCard(suits[i].name(),ranks[j].name());
+                cards.add(card);
+            }
+        }  
     }
 
     /**
@@ -51,5 +66,5 @@ public class GroupOfCards {
     public void setSize(int size) {
         this.size = size;
     }
-
+    
 }//end class

@@ -19,15 +19,26 @@ public abstract class Card {
      *
      * @return a String representation of a card. Could be an UNO card, a regular playing card etc.
      */
-    String suit;
-    int rank;
+    protected String suit;
+    protected String rank;
     
     public Card(){
       
     }
     
-    public Card(String suit, int rank){
+    public String getCardSuit(){
+        return this.suit;
+    }
+    
+    public void setCardSuit(String suit){
         this.suit=suit;
+    }
+    
+     public String getCardRank(){
+        return this.rank;
+    }
+     
+     public void setCardRank(String rank){
         this.rank=rank;
     }
     

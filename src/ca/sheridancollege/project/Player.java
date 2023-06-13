@@ -24,7 +24,7 @@ public abstract class Player {
     public Player(){}
     
     public Player(String name) {
-        setName(name);
+        this.setName(name);
         this.names.add(name);
     }
 

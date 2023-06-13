@@ -21,7 +21,12 @@ public class GoFishPlayer extends Player {
     }
     
     public void play(){
-       String[][] myCards = {{"CLUBS","ONE"},{"DIAMONDS","ONE"},{"CLUBS","THREE"},{"DIAMONDS","FOUR"},
+       dealer();
+       
+    }
+    public String dealer(){
+        String myReqment;
+        String[][] myCards = {{"CLUBS","ONE"},{"DIAMONDS","ONE"},{"CLUBS","THREE"},{"DIAMONDS","FOUR"},
                              {"HEARTS","FIVE"}};
        ArrayList<String> myArray = new ArrayList<>();
        for(String[] myRow: myCards)
@@ -43,15 +48,19 @@ public class GoFishPlayer extends Player {
 
         Collection<Integer> count = myMap.values();
         int maxCount = Collections.max(count);
-        String maxNumber = " ";
+        String maxString = " ";
         for(Map.Entry<String, Integer> entry: myMap.entrySet()){
             if (maxCount == entry.getValue()){
-                maxNumber = entry.getKey();
+                maxString = entry.getKey();
             }
             
         }
+        myReqment = maxString;
         System.out.println("Initial Mappings are: " + myMap);
-        System.out.println("The occurence of element " + maxNumber + " is: " + maxCount);
-       
+        System.out.println("The occurence of element " + maxString + " is: " + maxCount);
+        return myReqment;
+    }
+    public void play2(String maxString){
+        
     }
 }

@@ -21,7 +21,8 @@ public class GoFishPlayer extends Player {
     }
     
     public void play(){
-       dealer();
+       String myReqment = dealer();
+       boolean isInHand = BeenAsked(myReqment);
        
     }
     public String dealer(){
@@ -60,7 +61,8 @@ public class GoFishPlayer extends Player {
         System.out.println("The occurence of element " + maxString + " is: " + maxCount);
         return myReqment;
     }
-    public void BeenAsked(String maxString){
+    public boolean BeenAsked(String maxString){
+        boolean isInHand = false;
         String[][] myCards = {{"DIAMONDS","ONE"},{"DIAMONDS","NINE"},{"CLUBS","THREE"},{"DIAMONDS","FOUR"},
                              {"HEARTS","TEN"}};
        ArrayList<String> myArray = new ArrayList<>();
@@ -75,10 +77,13 @@ public class GoFishPlayer extends Player {
        for(int i = 0; i < myArray.size(); i ++){
            if (myArray.get(i).equals(maxString)){
               System.out.println("Yes, here you are!");
+              isInHand = true;
            }
            else{
               System.out.println("Go Fish!");
+              isInHand = false;
            }
        }
+       return isInHand;
     }
 }

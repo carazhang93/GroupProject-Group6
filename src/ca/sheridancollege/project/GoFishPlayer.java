@@ -3,87 +3,94 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Classes/Class.java to edit this template
  */
 package ca.sheridancollege.project;
-
+import java.util.ArrayList;
 /**
  *
- * @author Xiaoyi Zhang  Meichao Zhao
+ * @author Xiaoyi Zhang
  */
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 public class GoFishPlayer extends Player {
+    private ArrayList<Card> cardsOnHand;//num of cards on each player's hand
+    private Player[] groupPlayers;
+    private GroupOfCards cardsGroup;
+    private String role;
+    public static final int FISRSTHAND =5;
     
-    public static void main(String[] args){
-        GoFishPlayer myPlayer = new GoFishPlayer();
-        myPlayer.play();
+    public GoFishPlayer(String name, int size){
+        super(name);
+        this.cardsOnHand= new ArrayList<>();
+        this.groupPlayers = new GoFishPlayer[numOfPlayer()];
+        this.cardsGroup = new GroupOfCards(size);
     }
+    
+    public void setGroupPlayers(){
+        cardsGroup.shuffle();
+        for(int i =0; i<numOfPlayer();i++){
+            GoFishPlayer player = new GoFishPlayer(groupPlayers[i].getName(), 1); 
+            for(int count=0; count<FISRSTHAND;count++){
+               Card card = cardsGroup.getCards().remove(0);
+               player.addPlayerCards(card);
+               
+            }
+        }    
+    }
+    
+    public void addPlayerCards(Card card){
+            this.cardsOnHand.add(card);   
+    }
+    
+    public void removePlayerCards(Card card){
+            this.cardsOnHand.remove(card);
+    }
+    
+    public ArrayList<Card> getPlayerCards(){
+        return this.cardsOnHand;
+    }
+    
+    public void setRole(String role){
+        this.role=role;
+    }
+    
+    public String getRole(){
+        return this.role;
+    }
+    
+    public int numCards(){
+     return cardsOnHand.size();
+    }
+    
+    public String maxCard(){
+        String maxCard=null;
+        int maxCount=0;
+        
+        for(int i =0; i<cardsOnHand.size(); i++){
+            int count=0;
+            for(int j=0; j<cardsOnHand.size(); j++){
+                if(cardsOnHand.get(i).getCardRank().equals(cardsOnHand.get(j).getCardRank())){
+                
+                    count++;
+                }
+            }
+            if (count>maxCount){
+                maxCount=count;
+                maxCard=cardsOnHand.get(i).getCardRank();
+            }
+        }
+        
+        return maxCard;
+    }
+    
     
     public void play(){
-       String myReqment = dealer();
-       boolean isInHand = BeenAsked(myReqment);
-       
-    }
-    public String dealer(){
-        String myReqment;
-        String[][] myCards = {{"CLUBS","ONE"},{"DIAMONDS","ONE"},{"CLUBS","THREE"},{"DIAMONDS","FOUR"},
-                             {"HEARTS","FIVE"}};
-       ArrayList<String> myArray = new ArrayList<>();
-       for(String[] myRow: myCards)
-           for (String myCol: myRow)
-               myArray.add(myCol);
-        for(int i = 0; i < myArray.size(); i += 1){
-            //System.out.print("The element to be deleted: " + myArray.get(i) + "\n");
-           myArray.remove(i);
-        }
-        HashMap<String, Integer> myMap = new HashMap<String, Integer>();
-        for (int i = 0; i< myArray.size(); i ++){
-            if (myMap.containsKey(myArray.get(i))){
-                int temp = myMap.get(myArray.get(i));
-                myMap.put(myArray.get(i),temp + 1);
-            }
-            else
-                myMap.put(myArray.get(i), 1);
-        }
-
-        Collection<Integer> count = myMap.values();
-        int maxCount = Collections.max(count);
-        String maxString = " ";
-        for(Map.Entry<String, Integer> entry: myMap.entrySet()){
-            if (maxCount == entry.getValue()){
-                maxString = entry.getKey();
-            }
+        if(getRole().equals("player")){
+            for(Player player:names){
             
+            }
+        }else if(getRole().equals("competitor")){
+        
+        
+        }else{
+        
+            System.out.println("Game ends.");
         }
-        myReqment = maxString;
-        System.out.println("Initial Mappings are: " + myMap);
-        System.out.println("The occurence of element " + maxString + " is: " + maxCount);
-        return myReqment;
-    }
-    public boolean BeenAsked(String maxString){
-        boolean isInHand = false;
-        String[][] myCards = {{"DIAMONDS","ONE"},{"DIAMONDS","NINE"},{"CLUBS","THREE"},{"DIAMONDS","FOUR"},
-                             {"HEARTS","TEN"}};
-       ArrayList<String> myArray = new ArrayList<>();
-       for(String[] myRow: myCards){
-           for (String myCol: myRow)
-               myArray.add(myCol);
-           for(int i = 0; i < myArray.size(); i += 1){
-            //System.out.print("The element to be deleted: " + myArray.get(i) + "\n");
-           myArray.remove(i);
-          }
-       }
-       for(int i = 0; i < myArray.size(); i ++){
-           if (myArray.get(i).equals(maxString)){
-              System.out.println("Yes, here you are!");
-              isInHand = true;
-           }
-           else{
-              System.out.println("Go Fish!");
-              isInHand = false;
-           }
-       }
-       return isInHand;
     }
 }

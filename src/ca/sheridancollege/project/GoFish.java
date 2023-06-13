@@ -6,7 +6,7 @@ package ca.sheridancollege.project;
 
 /**
  *
- * @author dollar
+ * @author michelle
  */
 public class GoFish extends Game{
     private int playersNum;

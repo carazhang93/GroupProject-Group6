@@ -6,7 +6,7 @@ package ca.sheridancollege.project;
 
 /**
  *
- * @author dollar
+ * @author michelle
  */
 import java.util.Random;
 public class PaperCard extends Card{

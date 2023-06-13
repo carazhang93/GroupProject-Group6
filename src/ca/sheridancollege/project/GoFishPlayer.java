@@ -60,7 +60,25 @@ public class GoFishPlayer extends Player {
         System.out.println("The occurence of element " + maxString + " is: " + maxCount);
         return myReqment;
     }
-    public void play2(String maxString){
-        
+    public void BeenAsked(String maxString){
+        String[][] myCards = {{"DIAMONDS","ONE"},{"DIAMONDS","NINE"},{"CLUBS","THREE"},{"DIAMONDS","FOUR"},
+                             {"HEARTS","TEN"}};
+       ArrayList<String> myArray = new ArrayList<>();
+       for(String[] myRow: myCards){
+           for (String myCol: myRow)
+               myArray.add(myCol);
+           for(int i = 0; i < myArray.size(); i += 1){
+            //System.out.print("The element to be deleted: " + myArray.get(i) + "\n");
+           myArray.remove(i);
+          }
+       }
+       for(int i = 0; i < myArray.size(); i ++){
+           if (myArray.get(i).equals(maxString)){
+              System.out.println("Yes, here you are!");
+           }
+           else{
+              System.out.println("Go Fish!");
+           }
+       }
     }
 }

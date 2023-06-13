@@ -6,7 +6,7 @@ package ca.sheridancollege.project;
 
 /**
  *
- * @author Xiaoyi Zhang
+ * @author Xiaoyi Zhang  Meichao Zhao
  */
 import java.util.ArrayList;
 import java.util.Collection;
